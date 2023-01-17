@@ -64,7 +64,7 @@ commands = [
     ">>> Install and configure zsh",
     "sudo apt install zsh -y",
     "wget -N https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh",
-    "bash install.sh",
+    "bash install.sh --unattended",
     "wget -N https://raw.githubusercontent.com/saturnoluis/ok-script/main/zshrc",
     "mv -f zshrc ~/.zshrc",
     "rm install.sh",
