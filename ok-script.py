@@ -3,6 +3,8 @@ import subprocess
 # List of commands to be executed 
 commands = [
 
+        "sudo mkdir -p /var/lib/dpkg",
+        "sudo touch -c -m /var/lib/dpkg/status",
         "sudo apt update",
         "sudo apt upgrade",
 
