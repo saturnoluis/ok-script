@@ -10,7 +10,7 @@ commands = [
 
         "END"]
 
-print("\033[42m" + "Process started..." + "\033[0m")
+print("\033[42m" + "Process started..." + "\033[0m" + "\n")
 
 # Start executing the list of commands 
 for command in commands:
@@ -26,7 +26,7 @@ for command in commands:
     if process.returncode == 0:
         # Show the output 
         print(process.stdout)
-        print("\033[32m" + "OK" + "\033[0m")
+        print("\033[42m" + "OK" + "\033[0m" + "\n")
 
     # When something went wrong
     else:
