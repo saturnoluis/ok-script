@@ -1,5 +1,9 @@
 import subprocess
 
+# My data
+name "Luis Saturno"
+email = "saturno.luis@gmail.com"
+
 # List of commands to be executed 
 commands = [
 
@@ -27,6 +31,7 @@ commands = [
     "sudo apt install git -y",
     "sudo apt install vim -y",
     "sudo apt install ssh -y",
+    "sudo apt install ranger -y",
     "sudo apt install python3-pip -y",
     "sudo apt install python3-dev -y",
     
@@ -36,11 +41,27 @@ commands = [
     "wget -N https://raw.githubusercontent.com/creationix/nvm/master/install.sh",
     "bash install.sh",
 
+    ">>> Configure git",
+    "git config --global core.editor nvim",
+    "git config --global user.name \"" + name + "\"",
+    "git config --global user.email \"" + email + "\"",
+
     ">>> Install neovim",
     "sudo apt-get install software-properties-common -y",
     "sudo add-apt-repository ppa:neovim-ppa/stable -y",
     "sudo apt-get update",
     "sudo apt-get install neovim -y",
+
+    ">>> Import neovim config",
+    "wget -N https://raw.githubusercontent.com/saturnoluis/ok-script/main/init.lua",
+    "mkdir -p ~/.config/nvim",
+    "mv -f init.lua ~/.config/nvim",
+
+    ">>> Install and configure zsh",
+    "sudo apt install zsh",
+    "chsh -s /usr/bin/zsh",
+    "wget -N https://raw.githubusercontent.com/saturnoluis/ok-script/main/zshrc",
+    "mv -f zshrc ~/.zshrc",
 
     "END"
 ]
@@ -51,12 +72,12 @@ print("\033[42m" + "Process started..." + "\033[0m" + "\n")
 
 # Start executing the list of commands 
 for command in commands:
-    # Identify the start of a commands block by the ">>>" srting
+    # Identify the start of a command's block by the ">>>" srting
     if command[:3] == ">>>":
-        # By default we're assumming we wont ignore next commands
+        # By default we're assumming we won't ignore next commands
         ignore_next = False
         print("\033[43m" + command + "\033[0m")
-        # Ask the user if they ant to continue executing this step
+        # Ask the user if they want to continue executing this step
         response = input("\033[33m" + "Continue to this step? (Y/n): " + "\033[0m")
         if response.lower() == "n":
             ignore_next = True
@@ -68,7 +89,7 @@ for command in commands:
         print("\n" + "\033[42m" + "End of process!" + "\033[0m")
         break
 
-    # Don't run the command if the user decided to skip
+    # Don't run the next commands if the user decided to skip
     if ignore_next == True:
         continue
 
