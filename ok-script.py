@@ -27,19 +27,20 @@ commands = [
     "sudo apt install git -y",
     "sudo apt install vim -y",
     "sudo apt install ssh -y",
-
+    "sudo apt install python3-pip -y",
+    "sudo apt install python3-dev -y",
+    
     ">>> Install node, npm and nvm",
     "sudo apt install nodejs -y",
     "sudo apt install npm -y",
-    "curl https://raw.githubusercontent.com/creationix/nvm/master/install.sh | bash"
+    "wget -N https://raw.githubusercontent.com/creationix/nvm/master/install.sh",
+    "bash install.sh",
 
     ">>> Install neovim",
     "sudo apt-get install software-properties-common -y",
-    "sudo apt-get install python-software-properties -y",
     "sudo add-apt-repository ppa:neovim-ppa/stable -y",
     "sudo apt-get update",
     "sudo apt-get install neovim -y",
-    "sudo apt-get install python-dev python-pip python3-dev python3-pip -y",
 
     "END"
 ]
@@ -72,7 +73,7 @@ for command in commands:
         continue
 
     # Run the command
-    print ("\033[32m" + "Running command:" + "\033[0m", command, "...")
+    print ("\033[32m" + "Running command:" + "\033[0m", command)
     process = subprocess.Popen(command, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
 
     # Show real-time output of the command
