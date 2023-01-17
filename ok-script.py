@@ -69,7 +69,7 @@ commands = [
     "mv -f zshrc ~/.zshrc",
     "rm install.sh",
 
-    ">>> Default to zsh (enter password and hit enter to continue)"
+    ">>> Default to zsh (enter password and hit enter to continue)",
     "chsh -s /usr/bin/zsh",
 
     "END"
