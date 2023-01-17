@@ -20,7 +20,7 @@ for command in commands:
 
     # Run the command
     print ("\033[32m" + "Running command:" + "\033[0m", command, "...")
-    process = subprocess.run(command, shell=True, capture_output=True, text=True)
+    process = subprocess.run(command, shell=True, capture_output=True, text=True, check=False)
 
     # When the command runs successfully
     if process.returncode == 0:
