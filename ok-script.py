@@ -2,8 +2,8 @@ import subprocess
 
 # List of commands to be executed 
 commands = [
-        ">>> Updating packages...",
 
+        ">>> Updating packages...",
         "sudo mkdir -p /var/lib/dpkg",
         "sudo touch -c -m /var/lib/dpkg/status",
         "sudo apt update",
@@ -26,18 +26,25 @@ for command in commands:
 
     # Run the command
     print ("\033[32m" + "Running command:" + "\033[0m", command, "...")
-    process = subprocess.run(command, shell=True, capture_output=True, text=True, check=False)
+    process = subprocess.Popen(command, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+
+    while True:
+        output = process.stdout.readline()
+        if output:
+            print(output.strip())
+        return_code = process.poll()
+        if return_code is not None:
+            break
 
     # When the command runs successfully
-    if process.returncode == 0:
-        # Show the output 
-        print(process.stdout)
+    if return_code == 0:
         print("\033[42m" + "OK" + "\033[0m" + "\n")
 
     # When something went wrong
     else:
         # Show the error...
-        print("\033[41m" + "Error:" + "\033[0m", process.stderr)
+        error = process.stderr.read()
+        print("\033[41m" + "Error:" + "\033[0m", error)
 
         # And ask the user if they whish to continue
         response = input("\033[33m" + "Continue executing the the script? (Y/n): " + "\033[0m")
