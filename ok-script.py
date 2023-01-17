@@ -80,7 +80,7 @@ for command in commands:
     while True:
         output = process.stdout.readline()
         if output:
-            print(output.strip())
+            print(output.decode().strip())
         return_code = process.poll()
         if return_code is not None:
             break
