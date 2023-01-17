@@ -3,26 +3,40 @@ import subprocess
 # List of commands to be executed 
 commands = [
 
-        ">>> Updating packages...",
-        "sudo mkdir -p /var/lib/dpkg",
-        "sudo touch -c -m /var/lib/dpkg/status",
-        "sudo apt update",
-        "sudo dpkg --configure -a",
-        "sudo apt upgrade -y",
+    ">>> APT packages update",
+    "sudo mkdir -p /var/lib/dpkg",
+    "sudo touch -c -m /var/lib/dpkg/status",
+    "sudo apt update",
+    "sudo dpkg --configure -a",
+    "sudo apt upgrade -y",
 
-        "END"]
+    ">>> Uninstall packages",
+    "sudo apt remove foo -y",
+    "ls -la",
+
+    "END"
+]
+
+ignore_next = False
 
 print("\033[42m" + "Process started..." + "\033[0m" + "\n")
 
 # Start executing the list of commands 
 for command in commands:
     if command[:3] == ">>>":
-        print("\033[43m" + command + "\033[0m" + "\n")
+        ignore_next = False
+        print("\033[43m" + command + "\033[0m")
+        response = input("\033[33m" + "Continue to this step? (Y/n): " + "\033[0m")
+        if response.lower() == "n":
+            ignore_next = True
         continue
 
     if command == "END":
-        print("\033[42m" + "End of process!" + "\033[0m")
+        print("\n" + "\033[42m" + "End of process!" + "\033[0m")
         break
+
+    if ignore_next == True:
+        continue
 
     # Run the command
     print ("\033[32m" + "Running command:" + "\033[0m", command, "...")
@@ -49,7 +63,7 @@ for command in commands:
         # And ask the user if they whish to continue
         response = input("\033[33m" + "Continue executing the the script? (Y/n): " + "\033[0m")
 
-        if response.lower() != "y":
+        if response.lower() == "n":
             # If not, then stop the execution 
             print("\033[41m" + "Execution stopped" + "\033[0m")
             break
