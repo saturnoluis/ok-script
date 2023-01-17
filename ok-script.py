@@ -1,7 +1,7 @@
 import subprocess
 
 # My data
-name "Luis Saturno"
+name = "Luis Saturno"
 email = "saturno.luis@gmail.com"
 
 # List of commands to be executed 
