@@ -3,9 +3,8 @@ import subprocess
 # List of commands to be executed 
 commands = [
 
-        "ls -l",
-        "pwd",
-        "asdf",
+        "sudo apt update",
+        "sudo apt upgrade",
 
         "END"]
 
