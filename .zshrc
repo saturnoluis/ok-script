@@ -127,7 +127,15 @@ function cdr() {
     rm -f -- "$tempfile"
 }
 
+# This function changes de working directory to the given one
+# and open nvim in that directory
+function code() {
+    cd "$1" && nvim ;
+}
+
 export EDITOR=nvim
 alias open="xdg-open"
 alias home="clear && cd ~"
-alias code="flatpak run com.visualstudio.code"
+
+# Flatpak aliases
+alias vscode="flatpak run com.visualstudio.code"
