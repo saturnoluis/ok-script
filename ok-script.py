@@ -62,10 +62,12 @@ commands = [
     "mkdir -p ~/.config/nvim",
     "mv -f init.lua ~/.config/nvim",
 
-    ">>> Install and configure zsh",
+    ">>> Install zsh",
     "sudo apt install zsh -y",
     "wget -N https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh",
     "bash install.sh --unattended",
+
+    ">>> Import zsh config",
     "wget -N https://raw.githubusercontent.com/saturnoluis/ok-script/main/.zshrc",
     "mv -f .zshrc ~/.zshrc",
     "rm install.sh",
