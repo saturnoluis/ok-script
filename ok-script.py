@@ -36,7 +36,6 @@ commands = [
     "sudo apt install neofetch -y",
     "sudo apt install python3-pip -y",
     "sudo apt install python3-dev -y",
-    "sudo apt install gnome-user-share -y",
     
     ">>> Install node, npm and nvm",
     "sudo apt install nodejs -y",
