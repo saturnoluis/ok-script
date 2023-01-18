@@ -44,7 +44,7 @@ commands = [
     "sudo apt install npm -y",
     "wget -N https://raw.githubusercontent.com/creationix/nvm/master/install.sh",
     "bash install.sh",
-    "rm install.sh",
+    "rm -r install.sh",
 
     ">>> Configure git",
     "git config --global core.editor nvim",
@@ -66,7 +66,7 @@ commands = [
     "sudo apt install zsh -y",
     "wget -N https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh",
     "bash install.sh --unattended",
-    "rm install.sh",
+    "rm -r install.sh",
 
     ">>> Import zsh config",
     "wget -N https://raw.githubusercontent.com/saturnoluis/ok-script/main/zshrc",
