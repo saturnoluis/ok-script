@@ -33,10 +33,10 @@ commands = [
     "sudo apt install curl -y",
     "sudo apt install htop -y",
     "sudo apt install ranger -y",
-    "sudo apt install remmina -y",
     "sudo apt install neofetch -y",
     "sudo apt install python3-pip -y",
     "sudo apt install python3-dev -y",
+    "sudo apt install gnome-user-share -y",
     
     ">>> Install node, npm and nvm",
     "sudo apt install nodejs -y",
@@ -69,7 +69,8 @@ commands = [
     "mv -f zshrc ~/.zshrc",
     "rm install.sh",
 
-    ">>> Default to zsh (enter password and hit enter to continue)",
+    ">>> Change shell to zsh",
+    "# Enter your password and hit enter to continue...",
     "chsh -s /usr/bin/zsh",
 
     "END"
@@ -93,6 +94,11 @@ for command in commands:
         # Continue to the next command in the list
         continue
 
+    # Print comments or instructions
+    if command[:2] == "# ":
+        print(command[2:])
+        continue
+
     # This allows to know if the script has ended
     if command == "END":
         print("\n" + "\033[42m" + "End of process!" + "\033[0m")
@@ -102,8 +108,11 @@ for command in commands:
     if ignore_next == True:
         continue
 
+    # Print the command to run if is not an echo
+    if command[:4] != "echo":
+        print ("\033[32m" + "Running command:" + "\033[0m", command)
+
     # Run the command
-    print ("\033[32m" + "Running command:" + "\033[0m", command)
     process = subprocess.Popen(command, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
 
     # Show real-time output of the command
@@ -115,7 +124,7 @@ for command in commands:
         if return_code is not None:
             break
 
-    # When the command runs successfully
+    # Print OK when the command runs successfully
     if return_code == 0:
         print("\033[42m" + "OK" + "\033[0m" + "\n")
 
