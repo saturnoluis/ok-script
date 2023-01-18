@@ -68,8 +68,9 @@ commands = [
     "bash install.sh --unattended",
 
     ">>> Import zsh config",
-    "wget -N https://raw.githubusercontent.com/saturnoluis/ok-script/main/.zshrc",
-    "mv -f .zshrc ~/.zshrc",
+    "wget -N https://raw.githubusercontent.com/saturnoluis/ok-script/main/zshrc",
+    "rm -f ~/.zshrc",
+    "mv -f zshrc ~/.zshrc",
     "rm install.sh",
 
     ">>> Change shell to zsh",
