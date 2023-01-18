@@ -66,12 +66,12 @@ commands = [
     "sudo apt install zsh -y",
     "wget -N https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh",
     "bash install.sh --unattended",
+    "rm install.sh",
 
     ">>> Import zsh config",
     "wget -N https://raw.githubusercontent.com/saturnoluis/ok-script/main/zshrc",
     "rm -f ~/.zshrc",
     "mv -f zshrc ~/.zshrc",
-    "rm install.sh",
 
     ">>> Change shell to zsh",
     "# Enter your password and hit enter to continue...",
