@@ -135,7 +135,7 @@ function code() {
 
 export EDITOR=nvim
 
-alias hi="echo \"Hi sexy! I'm $(hostname).\""
+alias hi="echo \"Hi sexy! I'm $(hostname).\nHere's my IP: $(hostname -I)\""
 
 alias open="xdg-open"
 alias home="clear && cd ~"
