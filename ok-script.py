@@ -14,30 +14,38 @@ commands = [
     "sudo dpkg --configure -a",
     "sudo apt upgrade -y",
 
-    ">>> Uninstall packages",
+    ">>> Remove preinstalled applications",
+    "# Remove some UI apps that are preinstalled in linux mint",
+    "sudo apt remove celluloid -y",
     "sudo apt remove drawing -y",
     "sudo apt remove hexchat* -y",
     "sudo apt remove hypnotix -y",
-    "sudo apt remove celluloid -y",
+    "sudo apt remove libreoffice-* -y",
     "sudo apt remove rhythmbox* -y",
     "sudo apt remove thunderbird* -y",
     "sudo apt remove transmission* -y",
-    "sudo apt remove libreoffice-* -y",
     "sudo apt remove webapp-manager -y",
     "sudo apt autoremove -y",
 
+    ">>> Install ubuntu-restricted-extras",
+    "sudo apt install ubuntu-restricted-extras -y",
+
+    ">>> Install build-essential",
+    "sudo apt install build-essential -y",
+
     ">>> Install packages",
-    "sudo apt install git -y",
-    "sudo apt install vim -y",
-    "sudo apt install ssh -y",
-    "sudo apt install curl -y",
-    "sudo apt install htop -y",
-    "sudo apt install ranger -y",
-    "sudo apt install cmatrix -y",
+    "sudo apt install bat",
     "sudo apt install caffeine -y",
+    "sudo apt install curl -y",
+    "sudo apt install fd-find -y",
+    "sudo apt install git -y",
+    "sudo apt install htop -y",
     "sudo apt install neofetch -y",
-    "sudo apt install python3-pip -y",
     "sudo apt install python3-dev -y",
+    "sudo apt install python3-pip -y",
+    "sudo apt install ranger -y",
+    "sudo apt install ssh -y",
+    "sudo apt install vim -y",
     
     ">>> Install node, npm and nvm",
     "sudo apt install nodejs -y",
@@ -46,11 +54,6 @@ commands = [
     "bash install.sh",
     "rm -r install.sh",
 
-    ">>> Configure git",
-    "git config --global core.editor nvim",
-    "git config --global user.name \"" + name + "\"",
-    "git config --global user.email \"" + email + "\"",
-
     ">>> Install neovim",
     "sudo apt-get install software-properties-common -y",
     "sudo add-apt-repository ppa:neovim-ppa/stable -y",
@@ -58,7 +61,7 @@ commands = [
     "sudo apt-get install neovim -y",
 
     ">>> Import neovim config",
-    "wget -N https://raw.githubusercontent.com/saturnoluis/ok-script/main/init.lua",
+    "wget -N https://raw.githubusercontent.com/saturnoluis/nvim/main/init.lua",
     "mkdir -p ~/.config/nvim",
     "mv -f init.lua ~/.config/nvim",
 
@@ -76,6 +79,12 @@ commands = [
     ">>> Change shell to zsh",
     "# Enter your password and hit enter to continue...",
     "chsh -s /usr/bin/zsh",
+
+    ">>> Configure git",
+    "git config --global core.editor nvim",
+    "git config --global user.name \"" + name + "\"",
+    "git config --global user.email \"" + email + "\"",
+    "git config --global init.defaultBranch main",
 
     "END"
 ]

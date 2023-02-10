@@ -140,5 +140,8 @@ alias hi="echo \"Hi sexy! I'm $(hostname).\nHere's my IP: $(hostname -I)\""
 alias open="xdg-open"
 alias home="clear && cd ~"
 
+# Path to neovim
+export PATH="$PATH:~/.local/share/neovim/bin"
+
 # Flatpak aliases
 alias vscode="flatpak run com.visualstudio.code"
