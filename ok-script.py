@@ -72,7 +72,7 @@ commands = [
     "rm -r install.sh",
 
     ">>> Import zsh config",
-    "wget -N https://raw.githubusercontent.com/saturnoluis/ok-script/main/zshrc",
+    "wget -N https://raw.githubusercontent.com/saturnoluis/ok-script/main/configs/zshrc",
     "rm -f ~/.zshrc",
     "mv -f zshrc ~/.zshrc",
 
