@@ -35,7 +35,7 @@ commands = [
     "sudo apt install build-essential -y",
 
     ">>> Install packages",
-    "sudo apt install bat",
+    "sudo apt install bat -y",
     "sudo apt install caffeine -y",
     "sudo apt install chrome-gnome-shell -y",
     "sudo apt install curl -y",
