@@ -28,7 +28,8 @@ commands = [
     "sudo apt autoremove -y",
 
     ">>> Install ubuntu-restricted-extras",
-    "sudo apt install ubuntu-restricted-extras -y",
+    "# sudo apt install ubuntu-restricted-extras -y",
+    "echo Please run this one manually",
 
     ">>> Install build-essential",
     "sudo apt install build-essential -y",
@@ -36,6 +37,7 @@ commands = [
     ">>> Install packages",
     "sudo apt install bat",
     "sudo apt install caffeine -y",
+    "sudo apt install chrome-gnome-shell -y",
     "sudo apt install curl -y",
     "sudo apt install fd-find -y",
     "sudo apt install git -y",
