@@ -1,0 +1,42 @@
+# Unbind default prefix
+unbind C-b
+
+# Set new prefix to "s"
+set -g prefix  C-s
+bind C-s send-prefx
+
+# Setting a delay between prefix and command
+set -s escape-time 3
+
+# Set bind key to reload configuration file
+bind r source-file ~/.tmux.conf \; display <200b>"Reloaded!"
+
+# Splitting panes with h and v
+bind h split-window -h
+bind v split-window -v
+
+# Vim keybindings
+setw -g mode-keys vi
+bind-key h select-pane -L
+bind-key j select-pane -D
+bind-key k select-pane -U
+bind-key l select-pane -R
+
+# Enable mouse support
+set -g mouse on
+
+# Remove color
+set -g status-style bg=default 
+
+# Increase history limit
+set -g history-limit 100000
+
+# switch windows alt+number
+bind -n M-1 select-window -t 1
+bind -n M-2 select-window -t 2
+bind -n M-3 select-window -t 3
+bind -n M-4 select-window -t 4
+bind -n M-5 select-window -t 5
+bind -n M-6 select-window -t 6
+bind -n M-7 select-window -t 7
+bind -n M-8 select-window -t 8
