@@ -56,11 +56,13 @@ commands = [
     "bash install.sh",
     "rm -r install.sh",
 
+    ">>> Install rust and cargo",
+    "curl --proto '=https' --tlsv1.2 -sSf -o rustup.sh https://sh.rustup.rs",
+    "sh rustup.sh -yv",
+       
     ">>> Install neovim",
-    "sudo apt-get install software-properties-common -y",
-    "sudo add-apt-repository ppa:neovim-ppa/stable -y",
-    "sudo apt-get update",
-    "sudo apt-get install neovim -y",
+    ".cargo/bin/cargo install --git https://github.com/MordechaiHadad/bob.git",
+    ".cargo/bin/bob use 0.8.0",
 
     ">>> Import neovim config",
     "wget -N https://raw.githubusercontent.com/saturnoluis/nvim/main/init.lua",
