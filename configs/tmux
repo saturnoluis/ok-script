@@ -31,7 +31,7 @@ bind-key l select-pane -R
 set -g mouse on
 
 # Remove color
-set -g status-style fg=gray bg=default 
+set -g status-style fg=gray, bg=default 
 
 # Increase history limit
 set -g history-limit 100000
