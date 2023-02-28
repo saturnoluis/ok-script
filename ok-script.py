@@ -3,74 +3,99 @@ import subprocess
 # My data
 name = "Luis Saturno"
 email = "saturno.luis@gmail.com"
+hostname = "jupiter"
 
 # List of commands to be executed 
 commands = [
 
-    ">>> APT packages update",
-    "sudo mkdir -p /var/lib/dpkg",
-    "sudo touch -c -m /var/lib/dpkg/status",
-    "sudo apt update",
-    "sudo dpkg --configure -a",
-    "sudo apt upgrade -y",
-
-    ">>> Remove preinstalled applications",
-    "# Remove some UI apps that are preinstalled in linux mint",
-    "sudo apt remove celluloid -y",
-    "sudo apt remove drawing -y",
-    "sudo apt remove hexchat* -y",
-    "sudo apt remove hypnotix -y",
-    "sudo apt remove libreoffice-* -y",
-    "sudo apt remove rhythmbox* -y",
-    "sudo apt remove thunderbird* -y",
-    "sudo apt remove transmission* -y",
-    "sudo apt remove webapp-manager -y",
-    "sudo apt autoremove -y",
-
-    ">>> Install ubuntu-restricted-extras",
-    "# sudo apt install ubuntu-restricted-extras -y",
-    "echo Please run this one manually",
-
-    ">>> Install build-essential",
-    "sudo apt install build-essential -y",
-
-    ">>> Install packages",
-    "sudo apt install bat -y",
-    "sudo apt install caffeine -y",
-    "sudo apt install chrome-gnome-shell -y",
-    "sudo apt install curl -y",
-    "sudo apt install fd-find -y",
-    "sudo apt install git -y",
-    "sudo apt install htop -y",
-    "sudo apt install neofetch -y",
-    "sudo apt install python3-dev -y",
-    "sudo apt install python3-pip -y",
-    "sudo apt install ranger -y",
-    "sudo apt install ssh -y",
-    "sudo apt install vim -y",
+    ">>> Update system packages",
+    "sudo dnf update -y",
     
+    ">>> Enable RPM fusion",
+    "sudo rpm -Uvh http://download1.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm",
+    "sudo rpm -Uvh http://download1.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm",
+    "sudo dnf update -y",
+
+    ">>> Install media codecs",
+    "sudo dnf install gstreamer1-plugins-{bad-\*,good-\*,base} --exclude=gstreamer1-plugins-bad-free-devel -y",
+    "sudo dnf install gstreamer1-plugin-openh264 gstreamer1-libav -y",
+    "sudo dnf install lame\* --exclude=lame-devel -y",
+    "sudo dnf install ffmpeg ffmpeg-libs libva libva-utils -y",
+    "sudo dnf group upgrade --with-optional Multimedia -y",
+    
+    ">>> Remove libreoffice dnf packages",
+    "sudo dnf remove libreoffice\* -y",
+
+    ">>> Install dnf packages",
+    "sudo dnf copr enable zeno/scrcpy -y",
+    "sudo dnf install bat -y",
+    "sudo dnf install curl -y",
+    "sudo dnf install fd-find -y",
+    "sudo dnf install git -y",
+    "sudo dnf install gnome-tweaks -y",
+    "sudo dnf install htop -y",
+    "sudo dnf install neofetch -y",
+    "sudo dnf install openssh-server -y",
+    "sudo dnf install python3-pip -y",
+    "sudo dnf install ranger -y",
+    "sudo dnf install scrcpy -y",
+    "sudo dnf install vim -y",
+    
+    ">>> Install development tools and libraries",
+    "sudo dnf groupinstall \"Development Tools\" \"Development Libraries\" -y",
+   
+    ">>> Install nice-looking fonts",
+    "sudo dnf install -y 'google-roboto*' 'mozilla-fira*' fira-code-fonts",    
+ 
+    ">>> Enable flathub repository",
+    "flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo",
+    "flatpak update",
+
+    ">>> Enable flatpak themes",
+    "mkdir -pv ~/.themes",
+    "sudo flatpak override --filesystem=$HOME/.themes", 
+    "flatpak install org.gtk.Gtk3theme.Adwaita-dark",
+
+    ">>> Replace Firefox with flatpak version",
+    "sudo dnf remove firefox\* -y",
+    "flatpak install flathub org.mozilla.firefox -y",
+    "sudo flatpak override org.mozilla.firefox --filesystem=home",
+   
     ">>> Install node, npm and nvm",
-    "sudo apt install nodejs -y",
-    "sudo apt install npm -y",
+    "sudo dnf module install nodejs:18/common -y",
     "wget -N https://raw.githubusercontent.com/creationix/nvm/master/install.sh",
     "bash install.sh",
     "rm -r install.sh",
+    "node -v",
+    "npm -v",
 
     ">>> Install rust and cargo",
     "curl --proto '=https' --tlsv1.2 -sSf -o rustup.sh https://sh.rustup.rs",
     "sh rustup.sh -yv",
+    "source \"$HOME/.cargo/env\"",
+    "cargo -V",
        
-    ">>> Install neovim",
-    ".cargo/bin/cargo install --git https://github.com/MordechaiHadad/bob.git",
-    ".cargo/bin/bob use 0.8.0",
+    ">>> Configure git",
+    "git config --global core.editor nvim",
+    "git config --global user.name \"" + name + "\"",
+    "git config --global user.email \"" + email + "\"",
+    "git config --global init.defaultBranch main",
 
-    ">>> Import neovim config",
-    "wget -N https://raw.githubusercontent.com/saturnoluis/nvim/main/init.lua",
-    "mkdir -p ~/.config/nvim",
-    "mv -f init.lua ~/.config/nvim",
+    ">>> Generate ssh keys",
+    "ssh-keygen -t rsa -b 4096 -C \"" + email + "\"",
+    "# Copy the public key to use with github...",
+    "# https://github.com/settings/ssh/new",
+    "cat ~/.ssh/id_rsa.pub",
+
+    ">>> Install neovim",
+    "~/.cargo/bin/cargo install --git https://github.com/MordechaiHadad/bob.git",
+    "~/.cargo/bin/bob use 0.8.0",
+
+    ">>> Clone neovim config",
+    "git clone https://github.com/saturnoluis/nvim ~/.config/nvim", 
 
     ">>> Install zsh",
-    "sudo apt install zsh -y",
+    "sudo dnf install zsh -y",
     "wget -N https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh",
     "bash install.sh --unattended",
     "rm -r install.sh",
@@ -84,11 +109,8 @@ commands = [
     "# Enter your password and hit enter to continue...",
     "chsh -s /usr/bin/zsh",
 
-    ">>> Configure git",
-    "git config --global core.editor nvim",
-    "git config --global user.name \"" + name + "\"",
-    "git config --global user.email \"" + email + "\"",
-    "git config --global init.defaultBranch main",
+    ">>> Set hostname to " + hostname,
+    "hostnamectl set-hostname " + hostname,
 
     "END"
 ]
@@ -99,15 +121,19 @@ print("\033[42m" + "Process started..." + "\033[0m" + "\n")
 
 # Start executing the list of commands 
 for command in commands:
-    # Identify the start of a command's block by the ">>>" srting
+    
+    # Identify the start of a block of commands by the ">>>" srting
     if command[:3] == ">>>":
-        # By default we're assumming we won't ignore next commands
+        # By default we're assumming we won't ignore commands in the block
         ignore_next = False
         print("\033[43m" + command + "\033[0m")
-        # Ask the user if they want to continue executing this step
+
+        # Ask the user if they want to continue executing this block
         response = input("\033[33m" + "Continue to this step? (Y/n): " + "\033[0m")
         if response.lower() == "n":
+            print("\n")
             ignore_next = True
+
         # Continue to the next command in the list
         continue
 
@@ -118,7 +144,7 @@ for command in commands:
 
     # This allows to know if the script has ended
     if command == "END":
-        print("\n" + "\033[42m" + "End of process!" + "\033[0m")
+        print("\033[42m" + "End of process!" + "\033[0m")
         break
 
     # Don't run the next commands if the user decided to skip
@@ -152,10 +178,12 @@ for command in commands:
         print("\033[41m" + "Error:" + "\033[0m", error)
 
         # And ask the user if they whish to continue
-        response = input("\033[33m" + "Continue executing the the script? (Y/n): " + "\033[0m")
+        response = input("\033[33m" + "\nContinue executing the the script? (Y/n): " + "\033[0m")
 
         if response.lower() == "n":
             # If not, then stop the execution 
             print("\033[41m" + "Execution stopped" + "\033[0m")
             break
+        else:
+            print("\n")
 
