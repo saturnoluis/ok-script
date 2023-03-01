@@ -89,8 +89,7 @@ commands = [
     ">>> Install rust and cargo",
     "curl --proto '=https' --tlsv1.2 -sSf -o rustup.sh https://sh.rustup.rs",
     "sh rustup.sh -yv",
-    "source \"$HOME/.cargo/env\"",
-    "cargo -V",
+    "~/.cargo/bin/cargo -V",
 
     ">>> Configure git",
     "git config --global core.editor nvim",
