@@ -129,6 +129,9 @@ commands = [
     ">>> Set hostname to " + hostname,
     "hostnamectl set-hostname " + hostname,
 
+    ">>> Reboot system",
+    "sudo reboot",
+
     "END"
 ]
 
