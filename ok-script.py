@@ -57,7 +57,7 @@ commands = [
     ">>> Enable flatpak themes",
     "mkdir -pv ~/.themes",
     "sudo flatpak override --filesystem=$HOME/.themes", 
-    "flatpak install org.gtk.Gtk3theme.Adwaita-dark",
+    "flatpak install org.gtk.Gtk3theme.Adwaita-dark -y",
 
     ">>> Replace Firefox with flatpak version",
     "sudo dnf remove firefox\\* -y",
