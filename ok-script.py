@@ -41,6 +41,7 @@ commands = [
     "sudo dnf install ranger -y",
     "sudo dnf install ripgrep -y",
     "sudo dnf install scrcpy -y",
+    "sudo dnf install util-linux-user -y",
     "sudo dnf install vim -y",
 
     ">>> Install development tools and libraries",
