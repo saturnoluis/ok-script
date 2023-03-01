@@ -67,9 +67,14 @@ commands = [
     "flatpak install flathub com.google.Chrome -y",
     "flatpak install flathub com.mattjakeman.ExtensionManager -y",
     "flatpak install flathub com.microsoft.Edge -y",
-    "flatpak install flathub com.raggesilver.BlackBox -y",
     "flatpak install flathub com.transmissionbt.Transmission -y",
     "flatpak install flathub re.sonny.Junction -y",
+
+    ">>> Install wine",
+    "sudo dnf config-manager --add-repo https://dl.winehq.org/wine-builds/fedora/37/winehq.repo -y",
+    "sudo dnf update -y",
+    "sudo dnf install winehq-stable -y",
+    "sudo dnf install gamemode -y",
 
     ">>> Install node, npm and nvm",
     "sudo dnf module install nodejs:18/common -y",
