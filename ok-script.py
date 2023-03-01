@@ -10,21 +10,21 @@ commands = [
 
     ">>> Update system packages",
     "sudo dnf update -y",
-    
+
     ">>> Enable RPM fusion",
     "sudo rpm -Uvh http://download1.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm",
     "sudo rpm -Uvh http://download1.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm",
     "sudo dnf update -y",
 
     ">>> Install media codecs",
-    "sudo dnf install gstreamer1-plugins-{bad-\*,good-\*,base} --exclude=gstreamer1-plugins-bad-free-devel -y",
+    "sudo dnf install gstreamer1-plugins-{bad-\\*,good-\\*,base} --exclude=gstreamer1-plugins-bad-free-devel -y",
     "sudo dnf install gstreamer1-plugin-openh264 gstreamer1-libav -y",
-    "sudo dnf install lame\* --exclude=lame-devel -y",
+    "sudo dnf install lame\\* --exclude=lame-devel -y",
     "sudo dnf install ffmpeg ffmpeg-libs libva libva-utils -y",
     "sudo dnf group upgrade --with-optional Multimedia -y",
-    
+
     ">>> Remove libreoffice dnf packages",
-    "sudo dnf remove libreoffice\* -y",
+    "sudo dnf remove libreoffice\\* -y",
 
     ">>> Install dnf packages",
     "sudo dnf copr enable zeno/scrcpy -y",
@@ -39,15 +39,17 @@ commands = [
     "sudo dnf install openssh-server -y",
     "sudo dnf install python3-pip -y",
     "sudo dnf install ranger -y",
+    "sudo dnf install ripgrep -y",
     "sudo dnf install scrcpy -y",
     "sudo dnf install vim -y",
-    
+
     ">>> Install development tools and libraries",
     "sudo dnf groupinstall \"Development Tools\" \"Development Libraries\" -y",
-   
+    "sudo dnf install gcc-c++ -y",
+
     ">>> Install nice-looking fonts",
     "sudo dnf install -y 'google-roboto*' 'mozilla-fira*' fira-code-fonts",    
- 
+
     ">>> Enable flathub repository",
     "flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo",
     "flatpak update",
@@ -58,10 +60,10 @@ commands = [
     "flatpak install org.gtk.Gtk3theme.Adwaita-dark",
 
     ">>> Replace Firefox with flatpak version",
-    "sudo dnf remove firefox\* -y",
+    "sudo dnf remove firefox\\* -y",
     "flatpak install flathub org.mozilla.firefox -y",
     "sudo flatpak override org.mozilla.firefox --filesystem=home",
-   
+
     ">>> Install flatpak applications",
     "flatpak install flathub com.github.tchx84.Flatseal -y",
     "flatpak install flathub com.google.Chrome -y",
@@ -89,7 +91,7 @@ commands = [
     "sh rustup.sh -yv",
     "source \"$HOME/.cargo/env\"",
     "cargo -V",
-       
+
     ">>> Configure git",
     "git config --global core.editor nvim",
     "git config --global user.name \"" + name + "\"",
@@ -136,7 +138,7 @@ print("\033[42m" + "Process started..." + "\033[0m" + "\n")
 
 # Start executing the list of commands 
 for command in commands:
-    
+
     # Identify the start of a block of commands by the ">>>" srting
     if command[:3] == ">>>":
         # By default we're assumming we won't ignore commands in the block
@@ -175,12 +177,13 @@ for command in commands:
 
     # Show real-time output of the command
     while True:
-        output = process.stdout.readline()
-        if output:
-            print(output.decode().strip())
-        return_code = process.poll()
-        if return_code is not None:
-            break
+        if process.stdout is not None:
+            output = process.stdout.readline()
+            if output:
+                print(output.decode().strip())
+            return_code = process.poll()
+            if return_code is not None:
+                break
 
     # Print OK when the command runs successfully
     if return_code == 0:
@@ -189,8 +192,9 @@ for command in commands:
     # When something went wrong
     else:
         # Show the error...
-        error = process.stderr.read()
-        print("\033[41m" + "Error:" + "\033[0m", error)
+        if process.stderr is not None:
+            error = process.stderr.read()
+            print("\033[41m" + "Error:" + "\033[0m", error)
 
         # And ask the user if they whish to continue
         response = input("\033[33m" + "\nContinue executing the the script? (Y/n): " + "\033[0m")
