@@ -34,6 +34,7 @@ commands = [
     "sudo dnf install git -y",
     "sudo dnf install gnome-tweaks -y",
     "sudo dnf install htop -y",
+    "sudo dnf install java-latest-openjdk.x86_64 -y",
     "sudo dnf install neofetch -y",
     "sudo dnf install openssh-server -y",
     "sudo dnf install python3-pip -y",
@@ -61,6 +62,15 @@ commands = [
     "flatpak install flathub org.mozilla.firefox -y",
     "sudo flatpak override org.mozilla.firefox --filesystem=home",
    
+    ">>> Install flatpak applications",
+    "flatpak install flathub com.github.tchx84.Flatseal -y",
+    "flatpak install flathub com.google.Chrome -y",
+    "flatpak install flathub com.mattjakeman.ExtensionManager -y",
+    "flatpak install flathub com.microsoft.Edge -y",
+    "flatpak install flathub com.raggesilver.BlackBox -y",
+    "flatpak install flathub com.transmissionbt.Transmission -y",
+    "flatpak install flathub re.sonny.Junction -y",
+
     ">>> Install node, npm and nvm",
     "sudo dnf module install nodejs:18/common -y",
     "wget -N https://raw.githubusercontent.com/creationix/nvm/master/install.sh",
@@ -138,7 +148,7 @@ for command in commands:
         continue
 
     # Print comments or instructions
-    if command[:2] == "# ":
+    if command[:2] == "# " and ignore_next != True:
         print(command[2:])
         continue
 
