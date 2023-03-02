@@ -73,7 +73,7 @@ function code() {
 export EDITOR=nvim
 
 # Path to neovim
-export PATH="$PATH:/home/luis/.local/share/neovim/bin"
+export PATH="$PATH:/home/luis/.local/share/bob/neovim-bin"
 
 # My aliases
 # ******************************************
@@ -82,7 +82,6 @@ alias hi="echo \"Hello! I'm $(hostname).\nHere's my IP: $(hostname -I | awk '{pr
 alias open="xdg-open"
 alias home="clear && cd ~"
 alias phone="scrcpy --turn-screen-off --window-borderless"
-alias cat=batcat
 
 # Flatpak aliases
 alias vscode="flatpak run com.visualstudio.code"
