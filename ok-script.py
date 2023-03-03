@@ -129,6 +129,9 @@ commands = [
     ">>> Set hostname to " + hostname,
     "hostnamectl set-hostname " + hostname,
 
+    ">>> Enable ssh server",
+    "sudo systemctl enable sshd",
+
     ">>> Reboot system",
     "sudo reboot",
 
