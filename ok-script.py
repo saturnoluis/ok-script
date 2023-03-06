@@ -46,7 +46,6 @@ commands = [
     "sudo dnf install scrcpy -y",
     "sudo dnf install util-linux-user -y",
     "sudo dnf install vim -y",
-    "sudo dnf install wget -y",
 
     ">>> Install development tools and libraries",
     "sudo dnf groupinstall \"Development Tools\" \"Development Libraries\" -y",
