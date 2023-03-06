@@ -73,8 +73,8 @@ export EDITOR=nvim
 
 # My paths
 # ******************************************
-export PATH="$PATH:/home/luis/.local/share/bob/neovim-bin"
-export PATH="$PATH:/home/luis/.cargo/bin"
+export PATH="/home/luis/.cargo/bin:$PATH"
+export PATH="/home/luis/.local/share/bob/nvim-bin:$PATH"
 
 # My aliases
 # ******************************************
