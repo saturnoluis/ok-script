@@ -96,6 +96,7 @@ commands = [
     "curl --proto '=https' --tlsv1.2 -sSf -o rustup.sh https://sh.rustup.rs",
     "sh rustup.sh -yv",
     "~/.cargo/bin/cargo -V",
+    "rm rustup.sh",
 
     ">>> Configure git",
     "git config --global core.editor nvim",
