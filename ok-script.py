@@ -115,6 +115,7 @@ commands = [
     "cat ~/.ssh/id_rsa.pub",
 
     ">>> Install neovim",
+    "# Be patient, it takes some time...",
     "~/.cargo/bin/cargo install --git https://github.com/MordechaiHadad/bob.git",
     "~/.cargo/bin/bob use 0.9.0",
 
