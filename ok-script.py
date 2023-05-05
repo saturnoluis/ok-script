@@ -83,7 +83,7 @@ commands = [
     "flatpak install flathub re.sonny.Junction -y",
 
     ">>> Install wine",
-    "sudo dnf config-manager --add-repo https://dl.winehq.org/wine-builds/fedora/37/winehq.repo -y",
+    "sudo dnf config-manager --add-repo https://dl.winehq.org/wine-builds/fedora/38/winehq.repo -y",
     "sudo dnf update -y",
     "sudo dnf install winehq-stable -y",
     "sudo dnf install gamemode -y",
@@ -116,7 +116,7 @@ commands = [
 
     ">>> Install neovim",
     "~/.cargo/bin/cargo install --git https://github.com/MordechaiHadad/bob.git",
-    "~/.cargo/bin/bob use 0.8.0",
+    "~/.cargo/bin/bob use 0.9.0",
 
     ">>> Clone neovim config",
     "git clone https://github.com/saturnoluis/nvim ~/.config/nvim", 
@@ -128,9 +128,13 @@ commands = [
     "rm -r install.sh",
 
     ">>> Import zsh config",
-    "wget -N https://raw.githubusercontent.com/saturnoluis/ok-script/main/configs/zshrc",
+    "wget -N https://raw.githubusercontent.com/saturnoluis/ok-script/main/configs/dot.zshrc",
     "rm -f ~/.zshrc",
-    "mv -f zshrc ~/.zshrc",
+    "mv -f dot.zshrc ~/.zshrc",
+
+    ">>> Import tmux config",
+    "wget -N https://raw.githubusercontent.com/saturnoluis/ok-script/main/configs/dot.tmux.conf",
+    "mv -f dot.tmux.conf ~/.tmux.conf", 
 
     ">>> Change shell to zsh",
     "# Enter your password and hit enter to continue...",
