@@ -108,6 +108,7 @@ commands = [
     "git config --global init.defaultBranch main",
 
     ">>> Generate ssh keys",
+    "# Press Enter key...",
     "ssh-keygen -t rsa -b 4096 -C \"" + email + "\"",
     "# Copy the public key to use with github...",
     "# https://github.com/settings/ssh/new",
