@@ -1,6 +1,6 @@
 # The "ok" script
  
-This script is meant for use after installing Fedora Workstation 36+.
+This script is meant for use after installing Fedora Workstation 38+.
 It automates for me the tasks I typically perform post-installation,
 including uninstalling unwanted apps, installing essential ones, and setting
 configurations for tools such as Neovim, Zsh, and others.
