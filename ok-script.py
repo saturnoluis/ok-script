@@ -88,7 +88,7 @@ commands = [
     "sudo dnf install gamemode -y",
 
     ">>> Install node, npm and nvm",
-    "sudo dnf module install nodejs:18/common -y",
+    "sudo dnf module install nodejs -y",
     "wget -N https://raw.githubusercontent.com/creationix/nvm/master/install.sh",
     "bash install.sh",
     "rm -r install.sh",
