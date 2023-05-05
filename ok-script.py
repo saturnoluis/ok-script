@@ -145,7 +145,7 @@ commands = [
     "chsh -s /usr/bin/zsh",
 
     ">>> Install kitty 🐱",
-    "curl -L https://sw.kovidgoyal.net/kitty/installer.sh",
+    "wget -N https://sw.kovidgoyal.net/kitty/installer.sh",
     "bash installer.sh launch=n",
     "wget -N https://raw.githubusercontent.com/saturnoluis/ok-script/main/configs/kitty.conf",
     "mkdir -p ~/.config/kitty",
