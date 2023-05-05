@@ -5,7 +5,7 @@ export ZSH="$HOME/.oh-my-zsh"
 
 # Set name of the theme to load
 # See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
-ZSH_THEME="af-magic"
+ZSH_THEME="gallois"
 
 # Uncomment the following line to use case-sensitive completion.
 # CASE_SENSITIVE="true"
@@ -75,6 +75,7 @@ export EDITOR=nvim
 # ******************************************
 export PATH="/home/luis/.cargo/bin:$PATH"
 export PATH="/home/luis/.local/share/bob/nvim-bin:$PATH"
+export PATH="/home/luis/.local/kitty.app/bin:$PATH"
 
 # My aliases
 # ******************************************
@@ -86,3 +87,7 @@ alias py="python"
 
 # Flatpak aliases
 alias vscode="flatpak run com.visualstudio.code"
+
+# Prevent accidental removal
+alias rm="rm -i"
+
