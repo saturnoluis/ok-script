@@ -16,3 +16,7 @@ thoroughly read the ok-script.py file before running the script to ensure you
 understand what actions will be performed on your system. Running the script
 could result in unintended consequences, as it performs a significant number of
 operations on your system.
+
+*To-Fix:* There's an issue where the configuration files have "/home/luis" hardcoded
+for some paths affecting the zsh config and the kitty config.
+I would need to fix it so it takes that user dynamically.
