@@ -126,12 +126,15 @@ commands = [
     "sudo dnf install zsh -y",
     "wget -N https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh",
     "bash install.sh --unattended",
-    "rm -r install.sh",
+    "rm -f install.sh",
 
     ">>> Import zsh config",
     "wget -N https://raw.githubusercontent.com/saturnoluis/ok-script/main/configs/dot.zshrc",
     "rm -f ~/.zshrc",
     "mv -f dot.zshrc ~/.zshrc",
+
+    ">>> Install tmux",
+    "sudo dnf install tmux -y",
 
     ">>> Import tmux config",
     "wget -N https://raw.githubusercontent.com/saturnoluis/ok-script/main/configs/dot.tmux.conf",
@@ -140,6 +143,16 @@ commands = [
     ">>> Change shell to zsh",
     "# Enter your password and hit enter to continue...",
     "chsh -s /usr/bin/zsh",
+
+    ">>> Install kitty 🐱",
+    "curl -L https://sw.kovidgoyal.net/kitty/installer.sh",
+    "bash installer.sh",
+    "wget -N https://raw.githubusercontent.com/saturnoluis/ok-script/main/configs/kitty.conf",
+    "mkdir -p ~/.config/kitty",
+    "mv -f ./kitty.conf ~/.config/kitty/kitty.conf",
+    "wget -N https://raw.githubusercontent.com/saturnoluis/ok-script/main/configs/kitty.desktop",
+    "mv -f ./kitty.desktop ~/.local/share/applications/kitty.desktop",
+    "rm -f installer.sh",
 
     ">>> Set hostname to " + hostname,
     "hostnamectl set-hostname " + hostname,

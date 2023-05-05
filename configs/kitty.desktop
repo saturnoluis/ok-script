@@ -1,0 +1,10 @@
+# Copy this kitty.desktop file to ~/.local/share/applications/
+
+[Desktop Entry]
+Name=Kitty Terminal
+Comment=Powerful, customizable, and fast terminal emulator
+Exec=/home/luis/.local/kitty.app/bin/kitty
+Icon=/usr/share/icons/hicolor/scalable/apps/org.gnome.Terminal.svg
+Terminal=false
+Type=Application
+Categories=System;TerminalEmulator;
