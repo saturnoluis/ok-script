@@ -1,22 +1,16 @@
 # The "ok" script
- 
-This script is meant for use after installing Fedora Workstation 38+.
-It automates for me the tasks I typically perform post-installation,
-including uninstalling unwanted apps, installing essential ones, and setting
-configurations for tools such as Neovim, Zsh, and others.
 
-To run the script, copy and paste the following command in your terminal:
+This is the script I run to set-up my Fedora Workstation after a
+fresh install, it updates the system, installs tools and apps that
+I use, uninstall a few ones that I don't use, and sets my "dotfiles".
+
+To run the script:
  
 ```bash
-wget -N https://raw.githubusercontent.com/saturnoluis/ok-script/main/ok-script.py && python3 ok-script.py
+wget -N https://raw.githubusercontent.com/saturnoluis/ok-script/script-to-bash/ok-script.sh && ./ok-script.sh
 ```
- 
-*STOP!*: Don't run this, if you're interested, please take the time to
-thoroughly read the ok-script.py file before running the script to ensure you
-understand what actions will be performed on your system. Running the script
-could result in unintended consequences, as it performs a significant number of
-operations on your system.
+*Wait!*: This script is for my personal use, sure you can run it
+in your own system but I don't think you really should, feel
+free to ask me anything about this if you're interested.
 
-*To-Fix:* There's an issue where the configuration files have "/home/luis" hardcoded
-for some paths affecting the zsh config and the kitty config.
-I would need to fix it so it takes that user dynamically.
+saturno.luis(at)gmail.com
