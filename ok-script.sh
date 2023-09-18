@@ -55,14 +55,10 @@ if [ "$input" = "y" ]; then
     sudo dnf groupinstall "Development Tools" "Development Libraries" -y
     sudo dnf group install "C Development Tools and Libraries" -y
     sudo dnf install gcc-c++ -y
-    sudo dnf install gtk3-devel -y
-    sudo dnf install javascriptcoregtk4.0 -y
-    sudo dnf install javascriptcoregtk4.0-devel -y
     sudo dnf install librsvg2-devel -y
     sudo dnf install libsoup-devel -y
     sudo dnf install openssl-devel -y
     sudo dnf install python3-pip -y
-    sudo dnf install webkit2gtk4.0 webkit2gtk4.0-devel -y
 fi
 
 echo -n "Install nice-looking fonts? (y/n): "
@@ -119,19 +115,19 @@ echo -n "Install wine? (y/n): "
 read -n 1 input
 echo
 if [ "$input" = "y" ]; then
-    sudo dnf config-manager --add-repo https://dl.winehq.org/wine-builds/fedora/$fedora_version/winehq.repo -y
-    sudo dnf update -y
-    sudo dnf install winehq-stable -y
-    sudo dnf install gamemode -y
+   sudo dnf config-manager --add-repo https://dl.winehq.org/wine-builds/fedora/$fedora_version/winehq.repo -y
+   sudo dnf update -y
+   sudo dnf install winehq-stable -y
+   sudo dnf install gamemode -y
 fi
 
 echo -n "Install GNOME specific packages? (y/n): "
 read -n 1 input
 echo
 if [ "$input" = "y" ]; then
-    sudo dnf install gnome-tweaks -y
-    sudo dnf install libappindicator-gtk3 -y
-    flatpak install org.gtk.Gtk3theme.Adwaita-dark -y
+	sudo dnf install gnome-tweaks -y
+	sudo dnf install libappindicator-gtk3 -y
+	flatpak install org.gtk.Gtk3theme.Adwaita-dark -y
 	flatpak install flathub com.mattjakeman.ExtensionManager -y
 fi
 
@@ -151,19 +147,79 @@ echo -n "Install rust and cargo? (y/n): "
 read -n 1 input
 echo
 if [ "$input" = "y" ]; then
-    curl --proto '=https' --tlsv1.2 -sSf -o rustup.sh https://sh.rustup.rs
-    sh rustup.sh -yv
-    ~/.cargo/bin/cargo -V
-    rm rustup.sh
+	curl --proto '=https' --tlsv1.2 -sSf -o rustup.sh https://sh.rustup.rs
+	sh rustup.sh -yv
+	~/.cargo/bin/cargo -V
+	rm rustup.sh
 fi
 
-echo -n "Install phone screen tool (scrcpy)? (y/n): "
+echo -n "Configure git? (y/n): "
 read -n 1 input
 echo
 if [ "$input" = "y" ]; then
-    sudo dnf copr enable zeno/scrcpy -y
-    sudo dnf install scrcpy -y
+	read -p "Enter your email: " email
+	read -p "Enter your full name: " name
+
+	git config --global core.editor nvim
+	git config --global user.name "$name"
+	git config --global user.email "$email"
+	git config --global init.defaultBranch main
+
+	echo "Git configuration has been updated:"
+	git config --global --list | cat
+	echo
 fi
+
+echo -n "Generate ssh key? (y/n): "
+read -n 1 input
+echo
+if [ "$input" = "y" ]; then
+	read -p "Enter your email: " email
+
+	ssh-keygen -t rsa -b 4096 -C "$email"
+
+	echo "Copy the public key to use with github: https://github.com/settings/ssh/new"
+	cat ~/.ssh/id_rsa.pub
+	echo
+fi
+
+echo -n "Install neovim? (y/n): "
+read -n 1 input
+echo
+if [ "$input" = "y" ]; then
+	echo "Be patient, it takes a while..."
+	~/.cargo/bin/cargo install --git https://github.com/MordechaiHadad/bob.git
+	~/.cargo/bin/bob use 0.9.2
+fi
+
+echo -n "Clone neovim config? (y/n): "
+read -n 1 input
+echo
+if [ "$input" = "y" ]; then
+	git clone https://github.com/saturnoluis/nvim ~/.config/nvim
+fi
+
+    ">>> Install zsh",
+    "sudo dnf install zsh -y",
+    "wget -N https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh",
+    "bash install.sh --unattended",
+    "rm -f install.sh",
+
+    ">>> Import zsh config",
+    "wget -N https://raw.githubusercontent.com/saturnoluis/ok-script/main/configs/dot.zshrc",
+    "rm -f ~/.zshrc",
+    "mv -f dot.zshrc ~/.zshrc",
+
+    ">>> Install tmux",
+    "sudo dnf install tmux -y",
+
+    ">>> Import tmux config",
+    "wget -N https://raw.githubusercontent.com/saturnoluis/ok-script/main/configs/dot.tmux.conf",
+    "mv -f dot.tmux.conf ~/.tmux.conf", 
+
+    ">>> Change shell to zsh",
+    "# Enter your password and hit enter to continue...",
+    "chsh -s /usr/bin/zsh",
 
 echo "All done!"
 
