@@ -43,6 +43,7 @@ if [ "$input" = "y" ]; then
     sudo dnf install openssh-server -y
     sudo dnf install ranger -y
     sudo dnf install ripgrep -y
+	sudo dnf install tmux -y
     sudo dnf install util-linux-user -y
     sudo dnf install vim -y
     sudo dnf install xclip -y
@@ -199,32 +200,74 @@ if [ "$input" = "y" ]; then
 	git clone https://github.com/saturnoluis/nvim ~/.config/nvim
 fi
 
-    ">>> Install zsh",
-    "sudo dnf install zsh -y",
-    "wget -N https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh",
-    "bash install.sh --unattended",
-    "rm -f install.sh",
-
-    ">>> Import zsh config",
-    "wget -N https://raw.githubusercontent.com/saturnoluis/ok-script/main/configs/dot.zshrc",
-    "rm -f ~/.zshrc",
-    "mv -f dot.zshrc ~/.zshrc",
-
-    ">>> Install tmux",
-    "sudo dnf install tmux -y",
-
-    ">>> Import tmux config",
-    "wget -N https://raw.githubusercontent.com/saturnoluis/ok-script/main/configs/dot.tmux.conf",
-    "mv -f dot.tmux.conf ~/.tmux.conf", 
-
-    ">>> Change shell to zsh",
-    "# Enter your password and hit enter to continue...",
-    "chsh -s /usr/bin/zsh",
-
-echo "All done!"
-
-echo -n "? (y/n): "
+echo -n "Install zsh? (y/n): "
 read -n 1 input
 echo
 if [ "$input" = "y" ]; then
+	sudo dnf install zsh -y
+	wget -N https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh
+	bash install.sh --unattended
+	rm -f install.sh
+fi
+
+echo -n "Import zsh config? (y/n): "
+read -n 1 input
+echo
+if [ "$input" = "y" ]; then
+	wget -N https://raw.githubusercontent.com/saturnoluis/ok-script/main/configs/dot.zshrc
+	rm -f ~/.zshrc
+	mv -f dot.zshrc ~/.zshrc
+fi
+
+echo -n "Import tmux config? (y/n): "
+read -n 1 input
+echo
+if [ "$input" = "y" ]; then
+	wget -N https://raw.githubusercontent.com/saturnoluis/ok-script/main/configs/dot.tmux.conf
+	mv -f dot.tmux.conf ~/.tmux.conf
+fi
+
+echo -n "Change shell to zsh? (y/n): "
+read -n 1 input
+echo
+if [ "$input" = "y" ]; then
+	chsh -s /usr/bin/zsh
+fi
+
+echo -n "Install kitty 🐱? (y/n): "
+read -n 1 input
+echo
+if [ "$input" = "y" ]; then
+	wget -N https://sw.kovidgoyal.net/kitty/installer.sh
+	bash installer.sh launch=n
+	wget -N https://raw.githubusercontent.com/saturnoluis/ok-script/main/configs/kitty.conf
+	mkdir -p ~/.config/kitty
+	mv -f ./kitty.conf ~/.config/kitty/kitty.conf
+	wget -N https://raw.githubusercontent.com/saturnoluis/ok-script/main/configs/kitty.desktop
+	mv -f ./kitty.desktop ~/.local/share/applications/kitty.desktop
+	rm -f installer.sh
+fi
+
+echo -n "Change hostname? (y/n): "
+read -n 1 input
+echo
+if [ "$input" = "y" ]; then
+	read -p "Enter the new hostname: " hostname
+	hostnamectl set-hostname $hostname
+fi
+
+echo -n "Enable ssh server? (y/n): "
+read -n 1 input
+echo
+if [ "$input" = "y" ]; then
+	sudo systemctl enable sshd
+fi
+
+echo "All done!"
+
+echo -n "Reboot system? (y/n): "
+read -n 1 input
+echo
+if [ "$input" = "y" ]; then
+	sudo reboot
 fi
