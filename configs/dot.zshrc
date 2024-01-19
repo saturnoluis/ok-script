@@ -56,36 +56,6 @@ function git-force-push() { # Force push with lease
 	fi
 }
 
-# This function opens ranger and changes the working directory
-# to the current directory in ranger when you quit the program.
-function ranger-cd() {
-	tempfile="$(mktemp -t ranger_cd.XXXXXX)"
-	ranger --choosedir="$tempfile" "${@:-$(pwd)}"
-	test -f "$tempfile" &&
-	if [ "$(cat -- "$tempfile")" != "$(echo -n `pwd`)" ]; then
-		cd -- "$(cat "$tempfile")"
-	fi
-	rm -f -- "$tempfile"
-}
-
-# Create my usual tmux session to work
-function tmux-work() {
-	if tmux has-session -t work 2>/dev/null; then
-		tmux attach-session -t work
-	else
-		tmux new-session -d -s work -n nvim
-
-		tmux new-window -t work:2 -n services
-		tmux split-window -h
-		tmux split-window -v
-
-		tmux select-window -t work:1
-		tmux select-pane -t 0
-
-		tmux attach-session -t work
-	fi
-}
-
 # Function to list and stop all running docker containers
 function docker-stop-all() {
 	if command -v docker >/dev/null 2>&1; then
@@ -133,7 +103,6 @@ alias home="clear && cd ~"
 alias open="xdg-open"
 alias phone="scrcpy --turn-screen-off --window-borderless"
 alias py="python"
-alias minecraft-server="/mnt/my_games/minecraft/oklands/run.sh"
 
 # Flatpak aliases
 alias vscode="flatpak run com.visualstudio.code"
