@@ -23,43 +23,43 @@ echo -n "Install media codecs? (y/n): "
 read -n 1 input
 echo
 if [ "$input" = "y" ]; then
-    sudo dnf install gstreamer1-plugins-{bad-*,good-*,base} gstreamer1-plugin-openh264 gstreamer1-libav --exclude=gstreamer1-plugins-bad-free-devel -y
-    sudo dnf install lame* --exclude=lame-devel -y
-    sudo dnf install ffmpeg ffmpeg-libs libva libva-utils --allowerasing -y
-    sudo dnf group upgrade --with-optional --allowerasing --skip-broken Multimedia -y
+	sudo dnf install gstreamer1-plugins-{bad-*,good-*,base} gstreamer1-plugin-openh264 gstreamer1-libav --exclude=gstreamer1-plugins-bad-free-devel -y
+	sudo dnf install lame* --exclude=lame-devel -y
+	sudo dnf install ffmpeg ffmpeg-libs libva libva-utils --allowerasing -y
+	sudo dnf group upgrade --with-optional --allowerasing --skip-broken Multimedia -y
 fi
 
 echo -n "Install dnf packages? (y/n): "
 read -n 1 input
 echo
 if [ "$input" = "y" ]; then
-    sudo dnf install bat -y
-    sudo dnf install curl -y
-    sudo dnf install fd-find -y
-    sudo dnf install git -y
-    sudo dnf install htop -y
-    sudo dnf install java-latest-openjdk.x86_64 -y
-    sudo dnf install neofetch -y
-    sudo dnf install openssh-server -y
-    sudo dnf install ranger -y
-    sudo dnf install ripgrep -y
+	sudo dnf install bat -y
+	sudo dnf install curl -y
+	sudo dnf install fd-find -y
+	sudo dnf install git -y
+	sudo dnf install htop -y
+	sudo dnf install java-latest-openjdk.x86_64 -y
+	sudo dnf install neofetch -y
+	sudo dnf install openssh-server -y
+	sudo dnf install ranger -y
+	sudo dnf install ripgrep -y
 	sudo dnf install tmux -y
-    sudo dnf install util-linux-user -y
-    sudo dnf install vim -y
-    sudo dnf install xclip -y
+	sudo dnf install util-linux-user -y
+	sudo dnf install vim -y
+	sudo dnf install xclip -y
 fi
 
 echo -n "Install development tools? (y/n): "
 read -n 1 input
 echo
 if [ "$input" = "y" ]; then
-    sudo dnf groupinstall "Development Tools" "Development Libraries" -y
-    sudo dnf group install "C Development Tools and Libraries" -y
-    sudo dnf install gcc-c++ -y
-    sudo dnf install librsvg2-devel -y
-    sudo dnf install libsoup-devel -y
-    sudo dnf install openssl-devel -y
-    sudo dnf install python3-pip -y
+	sudo dnf groupinstall "Development Tools" "Development Libraries" -y
+	sudo dnf group install "C Development Tools and Libraries" -y
+	sudo dnf install gcc-c++ -y
+	sudo dnf install librsvg2-devel -y
+	sudo dnf install libsoup-devel -y
+	sudo dnf install openssl-devel -y
+	sudo dnf install python3-pip -y
 fi
 
 echo -n "Install nice-looking fonts? (y/n): "
@@ -73,7 +73,7 @@ echo -n "Remove libreoffice dnf packages? (y/n): "
 read -n 1 input
 echo
 if [ "$input" = "y" ]; then
-    sudo dnf remove libreoffice* -y
+	sudo dnf remove libreoffice* -y
 fi
 
 echo -n "Enable flathub repository? (y/n): "
@@ -88,17 +88,17 @@ echo -n "Enable flatpak themes? (y/n): "
 read -n 1 input
 echo
 if [ "$input" = "y" ]; then
-    mkdir -pv ~/.themes
-    sudo flatpak override --filesystem=$HOME/.themes
+	mkdir -pv ~/.themes
+	sudo flatpak override --filesystem=$HOME/.themes
 fi
 
 echo -n "Replace Firefox with flatpak version? (y/n): "
 read -n 1 input
 echo
 if [ "$input" = "y" ]; then
-    sudo dnf remove firefox* -y
-    flatpak install flathub org.mozilla.firefox -y
-    sudo flatpak override org.mozilla.firefox --filesystem=home
+	sudo dnf remove firefox* -y
+	flatpak install flathub org.mozilla.firefox -y
+	sudo flatpak override org.mozilla.firefox --filesystem=home
 fi
 
 echo -n "Install flatpak applications? (y/n): "
@@ -116,10 +116,10 @@ echo -n "Install wine? (y/n): "
 read -n 1 input
 echo
 if [ "$input" = "y" ]; then
-   sudo dnf config-manager --add-repo https://dl.winehq.org/wine-builds/fedora/$fedora_version/winehq.repo -y
-   sudo dnf update -y
-   sudo dnf install winehq-stable -y
-   sudo dnf install gamemode -y
+	sudo dnf config-manager --add-repo https://dl.winehq.org/wine-builds/fedora/$fedora_version/winehq.repo -y
+	sudo dnf update -y
+	sudo dnf install winehq-stable -y
+	sudo dnf install gamemode -y
 fi
 
 echo -n "Install GNOME specific packages? (y/n): "
@@ -240,10 +240,12 @@ echo
 if [ "$input" = "y" ]; then
 	wget -N https://sw.kovidgoyal.net/kitty/installer.sh
 	bash installer.sh launch=n
-	wget -N https://raw.githubusercontent.com/saturnoluis/ok-script/main/configs/kitty.conf
 	mkdir -p ~/.config/kitty
-	mv -f ./kitty.conf ~/.config/kitty/kitty.conf
+	wget -N https://raw.githubusercontent.com/saturnoluis/ok-script/main/configs/kitty.conf
+	wget -N https://raw.githubusercontent.com/saturnoluis/ok-script/main/configs/theme.conf
 	wget -N https://raw.githubusercontent.com/saturnoluis/ok-script/main/configs/kitty.desktop
+	mv -f ./kitty.conf ~/.config/kitty/kitty.conf
+	mv -f ./kitty.conf ~/.config/kitty/theme.conf
 	mv -f ./kitty.desktop ~/.local/share/applications/kitty.desktop
 	rm -f installer.sh
 fi

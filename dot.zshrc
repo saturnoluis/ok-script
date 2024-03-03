@@ -40,6 +40,7 @@ export NVM_DIR="$HOME/.nvm"
 
 # Set nvim as default editor
 export EDITOR=nvim
+export VISUAL=nvim;
 
 # My functions
 # ******************************************
@@ -53,6 +54,36 @@ function git-force-push() { # Force push with lease
 	if [[ $REPLY =~ ^[Yy]$ ]]
 	then
 		eval git push --force-with-lease $REMOTE $BRANCH
+	fi
+}
+
+# This function opens ranger and changes the working directory
+# to the current directory in ranger when you quit the program.
+function ranger-cd() {
+	tempfile="$(mktemp -t ranger_cd.XXXXXX)"
+	ranger --choosedir="$tempfile" "${@:-$(pwd)}"
+	test -f "$tempfile" &&
+	if [ "$(cat -- "$tempfile")" != "$(echo -n `pwd`)" ]; then
+		cd -- "$(cat "$tempfile")"
+	fi
+	rm -f -- "$tempfile"
+}
+
+# Create my usual tmux session to work
+function tmux-work() {
+	if tmux has-session -t work 2>/dev/null; then
+		tmux attach-session -t work
+	else
+		tmux new-session -d -s work -n nvim
+
+		tmux new-window -t work:2 -n services
+		tmux split-window -h
+		tmux split-window -v
+
+		tmux select-window -t work:1
+		tmux select-pane -t 0
+
+		tmux attach-session -t work
 	fi
 }
 
