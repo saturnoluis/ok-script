@@ -62,13 +62,6 @@ if [ "$input" = "y" ]; then
 	sudo dnf install python3-pip -y
 fi
 
-echo -n "Install nice-looking fonts? (y/n): "
-read -n 1 input
-echo
-if [ "$input" = "y" ]; then
-	sudo dnf install -y 'google-roboto*' 'mozilla-fira*' fira-code-fonts
-fi
-
 echo -n "Remove libreoffice dnf packages? (y/n): "
 read -n 1 input
 echo
